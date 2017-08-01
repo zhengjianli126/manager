@@ -22,6 +22,8 @@
     left: 50%;
     margin-left: -238px;
     top: 18%;
+    padding-left: 82px;
+    padding-right: 82px;
   }
 
 </style>
@@ -29,16 +31,18 @@
     <div class="login">
       <div class="login-header"></div>
       <div class="form-bd">
-        <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="80px" class="demo-ruleForm">
+        <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2"  class="demo-ruleForm">
             <el-form-item prop="username">
-              <el-input type="text" v-model="ruleForm2.username" auto-complete="off"></el-input>
+              <el-input type="text" v-model="ruleForm2.username"  auto-complete="off"></el-input>
             </el-form-item>
             <el-form-item label="" prop="password">
               <el-input type="password" v-model="ruleForm2.password" auto-complete="off"></el-input>
             </el-form-item>
+            <el-form-item label="" prop="password">
+              <el-input type="password" v-model="ruleForm2.password"  auto-complete="off"></el-input>
+            </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
-              <el-button @click="resetForm('ruleForm2')">重置</el-button>
+              <el-button type="primary" @click="submitForm('ruleForm2')" style="width:314px;" >登录</el-button>
             </el-form-item>
       </el-form>
       </div>
@@ -55,7 +59,7 @@ export default {
          callback(new Error('请输入用户名'));
        } else {
          if (this.ruleForm2.username !== '') {
-           this.$refs.ruleForm2.validateField('username');
+          //  this.$refs.ruleForm2.validateField('username');
          }
          callback();
        }
@@ -64,6 +68,7 @@ export default {
        if (value === '') {
          callback(new Error('请输入密码'));
        } else {
+          // this.$refs.ruleForm2.validateField('password');
          callback();
        }
      };
@@ -92,9 +97,6 @@ export default {
            return false;
          }
        });
-     },
-     resetForm(formName) {
-       this.$refs[formName].resetFields();
      }
    }
 }

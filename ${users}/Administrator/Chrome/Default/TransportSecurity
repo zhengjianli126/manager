@@ -1,11 +1,11 @@
 {
    "5EdUoB7YUY9zZV+2DkgVXgho8WUvp+D+6KpeUOhNQIM=": {
       "dynamic_spki_hashes_expiry": 0.0,
-      "expiry": 1501657321.321719,
+      "expiry": 1501669212.118217,
       "mode": "force-https",
       "pkp_include_subdomains": false,
       "pkp_observed": 0.0,
       "sts_include_subdomains": false,
-      "sts_observed": 1501570921.321721
+      "sts_observed": 1501582812.11822
    }
 }
