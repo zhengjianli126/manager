@@ -31,20 +31,18 @@
     <div class="login">
       <div class="login-header"></div>
       <div class="form-bd">
-        <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2"  class="demo-ruleForm">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm"  class="demo-ruleForm">
             <el-form-item prop="username">
-              <el-input type="text" v-model="ruleForm2.username"  auto-complete="off"></el-input>
+              <el-input type="text" v-model="ruleForm.username"  auto-complete="off"></el-input>
             </el-form-item>
             <el-form-item label="" prop="password">
-              <el-input type="password" v-model="ruleForm2.password" auto-complete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="" prop="password">
-              <el-input type="password" v-model="ruleForm2.password"  auto-complete="off"></el-input>
+              <el-input type="password" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')" auto-complete="off"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="submitForm('ruleForm2')" style="width:314px;" >登录</el-button>
+              <el-button type="primary" @click="submitForm('ruleForm')" style="width:314px;" >登录</el-button>
             </el-form-item>
       </el-form>
+      <p style="font-size:12px;line-height:30px;color:#999;">Tips : 用户名和密码随便填。</p>
       </div>
 
   </div>
@@ -52,46 +50,54 @@
 
 <script>
 export default {
-  name: 'login',
   data() {
-     var validatePass = (rule, value, callback) => {
-       if (value === '') {
-         callback(new Error('请输入用户名'));
-       } else {
-         if (this.ruleForm2.username !== '') {
-          //  this.$refs.ruleForm2.validateField('username');
-         }
-         callback();
-       }
-     };
-     var validatePass2 = (rule, value, callback) => {
-       if (value === '') {
-         callback(new Error('请输入密码'));
-       } else {
-          // this.$refs.ruleForm2.validateField('password');
-         callback();
-       }
-     };
+    //手动添加验证方法
+    //  var validatePass = (rule, value, callback) => {
+    //    if (value === '') {
+    //      callback(new Error('请输入用户名'));
+    //    } else {
+    //      if (this.ruleForm.username !== '') {
+     //
+     //
+    //      }
+    //      callback();
+    //    }
+    //  };
+    //  var validatePass2 = (rule, value, callback) => {
+    //    if (value === '') {
+    //      callback(new Error('请输入密码'));
+    //    } else {
+    //
+    //      callback();
+    //    }
+    //  };
+
      return {
-       ruleForm2: {
+       ruleForm: {
          username: '',
          password: ''
        },
-       rules2: {
-         username: [
-           { validator: validatePass, trigger: 'blur' }
-         ],
-         password: [
-           { validator: validatePass2, trigger: 'blur' }
-         ]
-       }
+       //手动添加验证方法
+      //  rules: {
+      //    username: [
+      //      { validator: validatePass, trigger: 'blur' }
+      //    ],
+      //    password: [
+      //      { validator: validatePass2, trigger: 'blur' }
+      //    ]
+      //  }
+      rules:{
+        username:[{required:true,message:'请输入用户名',trigger:'blur'}],
+        password:[{required:true,message:'请输入密码',trigger:'blur'}]
+      }
      };
    },
    methods: {
      submitForm(formName) {
        this.$refs[formName].validate((valid) => {
          if (valid) {
-           alert('submit!');
+          localStorage.setItem('username',this.ruleForm.username);
+          this.$router.push('/readme');
          } else {
            console.log('error submit!!');
            return false;
