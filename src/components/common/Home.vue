@@ -1,14 +1,18 @@
 <template lang="html">
-    <div class="main">
-      主页面
+    <div class="wrapper">
+      <v-header></v-header>
+      <v-slider></v-slider>
     </div>
 </template>
 
 <script>
+import vHeader from './Header.vue'
+import vSlider from './Slider.vue'
 export default {
-  name: 'main',
+  components:{vHeader,vSlider}
 }
 </script>
 
 <style lang="css">
+
 </style>
